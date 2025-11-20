@@ -1,2 +1,2 @@
-# PGIEREVENTS
+# PIGIEREVENTS
 Projet de plateforme de vote payante pour PIGIER
