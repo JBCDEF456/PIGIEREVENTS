@@ -98,7 +98,7 @@
                                 <div class="card">
                                     <div class="card-body justify-content-center text-center">
                                         <h5 class="card-title">Fonds collectes sur OM</h5>
-                                        <?php
+                                        <?php //1
                                             $dsn = "mysql:host=localhost;dbname=test";
                                             $user = "root";
                                             $password = "";
@@ -124,7 +124,7 @@
                                     <div class="card-body justify-content-center text-center">
                                         <h5 class="card-title">Fonds collectes sur MTN</h5>
                                         <?php
-                            
+                            //2
                             $dsn = "mysql:host=localhost;dbname=test";
                             $user = "root";
                             $password = "";
@@ -153,7 +153,7 @@
                     <div class="container justify-content-center text-center">
                         <h1>Section des resultats</h1>
                             <?php
-                            
+                            //3
                             $dsn = "mysql:host=localhost;dbname=test";
                             $user = "root";
                             $password = "";
@@ -172,6 +172,7 @@
                             $stmt = $pdo->query($sql);
                             $resultats = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             ?>
+                            <p>YOLLLOOOOOO</p>
                     </div>
                 </div>
 
@@ -194,6 +195,7 @@
                                                     <label for="categoryName" class="form-label justify-content-start">Nom de la categorie</label>
                                                     <input type="text" class="form-control" id="categoryName" required>
                                                     <?php 
+                                                    //4
                                                         $dsn = "mysql:host=localhost;dbname=test";
                                                         $user = "root";
                                                         $password = "";
