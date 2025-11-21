@@ -33,3 +33,14 @@
     background-color: #bb2d3b;
     color: white;
 }
+
+.card-custom {
+    background-color: #f8f9fa;
+    max-width: 30%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#participants-link{
+    @include font-size(4rem);
+}
