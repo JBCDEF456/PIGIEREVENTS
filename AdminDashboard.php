@@ -163,7 +163,7 @@
                             } catch (PDOException $e) {
                             die("Erreur de connexion : " . $e->getMessage());
                             }
-                            $sql = "SELECT c.nom_cat AS Categorie, r.nom AS 'Nom Candidat', r.prenom AS 'Prenom Candidat', r.nombre_vote AS 'Votes totaux'
+                            $sql = "SELECT c.nom_cat AS Categorie, r.nom AS 'Nom Candidat', r.nombre_vote AS 'Votes totaux'
                             FROM resultats r JOIN categorie c ON c.id_cat = r.id_cat
                             GROUP BY c.nom_cat
                             ORDER BY r.nombre_vote DESC";
