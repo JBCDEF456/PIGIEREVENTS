@@ -153,7 +153,7 @@
                     <div class="container justify-content-center text-center">
                         <h1>Section des resultats</h1>
                             <?php
-                            /* 3
+                            // 3
                             $dsn = "mysql:host=localhost;dbname=test";
                             $user = "root";
                             $password = "";
@@ -171,8 +171,7 @@
                             ORDER BY r.nombre_vote DESC";
                             $stmt = $pdo->query($sql);
                             $resultats = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                            */?>
-                            <p>YOLLLOOOOOO</p>
+                            ?>
                     </div>
                 </div>
 
@@ -196,6 +195,7 @@
                                                     <input type="text" class="form-control" id="categoryName" required>
                                                     <?php 
                                                     //4
+                                                    /*
                                                         $dsn = "mysql:host=localhost;dbname=test";
                                                         $user = "root";
                                                         $password = "";
@@ -211,7 +211,8 @@
                                                         $sql = " INSERT INTO categorie (nom_cat) VALUES (:nom_cat)";
                                                         $stmt = $pdo->query($sql);
                                                         $ajoutCat = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                                                        ?>
+                                                      */  
+                                                        ?> 
                                                 </div>
                                                 <div class="mb-3">
                                                     <div class="input-group">
