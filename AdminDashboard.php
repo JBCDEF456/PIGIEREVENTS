@@ -275,23 +275,14 @@
                                                     <label for="participantClass" class="form-label justify-content-start">Classe du participant</label>
                                                     <input type="text" class="form-control" id="participantClass" required>
                                                         <?php
-<<<<<<< HEAD
+                                                        /*
                                                          $dsn = "mysql:host=localhost;dbname=test";
-                                $user = "root";
-                            $password = "";
-                            try {
-                            $pdo = new PDO($dsn, $user, $password, [
-=======
-                                                            /*$dsn = "mysql:host=localhost;dbname=test";
-                                                            $user = "root";
-                                                            $password = "";
-                                                            try {
-                                                            $pdo = new PDO($dsn, $user, $password, [
->>>>>>> 3f828aab7302fa1bf182b8748e742b8342eff153
+                                                        $user = "root";
+                                                        $password = "";
+                                                        try {
+                                                        $pdo = new PDO($dsn, $user, $password, [
 
-                                                            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-                                                                
-                                                            ]);
+                                                            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
                                                             } catch (PDOException $e) {
                                                             die("Erreur de connexion : " . $e->getMessage());
                                                             }
