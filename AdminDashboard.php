@@ -273,7 +273,7 @@
                                                     <input type="text" class="form-control" id="participantClass" required>
                                                         <?php
                                                          $dsn = "mysql:host=localhost;dbname=test";
-                            $user = "root";
+                                $user = "root";
                             $password = "";
                             try {
                             $pdo = new PDO($dsn, $user, $password, [
