@@ -72,7 +72,7 @@
 
             <main class="col-md-8 ms-sm-auto col-lg-9 px-md-4 py-4" id="page-content-wrapper">
                 
-                <div class="section-content" id="dashboard-section">
+                <div class="section-content d-none" id="dashboard-section">
                     
                     <div class="container justify-content-center text-center">
                         <h1>Bienvenue sur le tableau de bord Admin</h1>
