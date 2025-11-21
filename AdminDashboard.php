@@ -99,7 +99,7 @@
                                     <div class="card-body justify-content-center text-center">
                                         <h5 class="card-title">Fonds collectes sur OM</h5>
                                         <?php
-                                           /* $dsn = "mysql:host=localhost;dbname=test";
+                                            $dsn = "mysql:host=localhost;dbname=test";
                                             $user = "root";
                                             $password = "";
 
@@ -115,7 +115,7 @@
                                             WHERE operateur = 'Orange Money'";
                                             $stmt = $pdo->query($sql);
                                             $fondsOM = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                                            */?>
+                                            ?>
                                     </div>
                                 </div>
                             </div>
@@ -125,7 +125,7 @@
                                         <h5 class="card-title">Fonds collectes sur MTN</h5>
                                         <?php
                             
-                            /*$dsn = "mysql:host=localhost;dbname=test";
+                            $dsn = "mysql:host=localhost;dbname=test";
                             $user = "root";
                             $password = "";
 
@@ -141,7 +141,7 @@
                             WHERE operateur = 'MTN MoMo'";
                             $stmt = $pdo->query($sql);
                             $fondsMoMo = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                            */?>
+                            ?>
                                     </div>
                                 </div>
                             </div>
