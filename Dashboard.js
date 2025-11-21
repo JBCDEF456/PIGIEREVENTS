@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const btn = document.querySelectorAll(".sidebar-link");
         btn.forEach((n) => {
             n.classList.remove("active");
-            if(n.getAttribute("data-bs-target") ===  activeSection){
+            if(n.getAttribute("data-bs-target") ===  "dashboard-section"){
                 n.classList.add("active");
             }
         });

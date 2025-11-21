@@ -209,6 +209,12 @@
                             $ajoutCat = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             ?>
                                                 </div>
+                                                <div class="mb-3">
+                                                    <div class="input-group">
+                                                        <input type="file" class="form-control" id="categoryImage" accept="image/*" required>
+                                                        <label class="input-group-text" for="categoryImage">Image categorie</label>
+                                                    </div>
+                                                </div>
                                             </form>
                                         </div>
                                         <div class="modal-footer">
@@ -284,6 +290,12 @@
                             $stmt = $pdo->query($sql);
                             $ajoutPart = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             ?>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <div class="input-group">
+                                                        <input type="file" class="form-control" id="participantPhoto" accept="image/*" required>
+                                                        <label class="input-group-text" for="participantPhoto">Photo participants</label>
+                                                    </div>
                                                 </div>
                                             </form>
                                         </div>
