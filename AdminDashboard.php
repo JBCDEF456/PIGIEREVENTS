@@ -153,7 +153,7 @@
                     <div class="container justify-content-center text-center">
                         <h1>Section des resultats</h1>
                             <?php
-                            //3
+                            /* 3
                             $dsn = "mysql:host=localhost;dbname=test";
                             $user = "root";
                             $password = "";
@@ -171,7 +171,7 @@
                             ORDER BY r.nombre_vote DESC";
                             $stmt = $pdo->query($sql);
                             $resultats = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                            ?>
+                            */?>
                             <p>YOLLLOOOOOO</p>
                     </div>
                 </div>
