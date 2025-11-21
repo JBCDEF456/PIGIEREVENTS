@@ -99,7 +99,7 @@
                                     <div class="card-body justify-content-center text-center">
                                         <h5 class="card-title">Fonds collectes sur OM</h5>
                                         <?php
-                            $dsn = "mysql:host=adresse_ip;dbname=test";
+                            $dsn = "mysql:host=localhost;dbname=test";
                             $user = "root";
                             $password = "";
 
@@ -124,7 +124,7 @@
                                     <div class="card-body justify-content-center text-center">
                                         <h5 class="card-title">Fonds collectes sur MTN</h5>
                                         <?php
-                            $dsn = "mysql:host=adresse_ip;dbname=test";
+                            $dsn = "mysql:host=localhost;dbname=test";
                             $user = "root";
                             $password = "";
 
@@ -152,7 +152,7 @@
                     <div class="container justify-content-center text-center">
                         <h1>Section des resultats</h1>
                             <?php
-                            $dsn = "mysql:host=adresse_ip;dbname=test";
+                            $dsn = "mysql:host=localhost;dbname=test";
                             $user = "root";
                             $password = "";
 
@@ -191,6 +191,23 @@
                                                 <div class="mb-3">
                                                     <label for="categoryName" class="form-label justify-content-start">Nom de la categorie</label>
                                                     <input type="text" class="form-control" id="categoryName" required>
+                                                    <?php
+                            $dsn = "mysql:host=localhost;dbname=test";
+                            $user = "root";
+                            $password = "";
+
+                            try {
+                            $pdo = new PDO($dsn, $user, $password, [
+                            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+                                            ]);
+                            } catch (PDOException $e) {
+                            die("Erreur de connexion : " . $e->getMessage());
+                            }
+                            $nom_cat = $_POST['categoryName']; 
+                            $sql = " INSERT INTO categorie (nom_cat) VALUES (:nom_cat)";
+                            $stmt = $pdo->query($sql);
+                            $ajoutCat = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                            ?>
                                                 </div>
                                             </form>
                                         </div>
@@ -206,7 +223,7 @@
                         <!-- Tableau des votes. Je compte sur toi pour le remplir Celio 
                                                         avec ton magiques PHP et SQL ;)-->
                             <?php
-                            $dsn = "mysql:host=adresse_ip;dbname=test";
+                            $dsn = "mysql:host=localhost;dbname=test";
                             $user = "root";
                             $password = "";
 
@@ -244,12 +261,29 @@
                                                 <div class="mb-3">
                                                     <label for="participantName" class="form-label justify-content-start">Nom du participant</label>
                                                     <input type="text" class="form-control" id="participantName" required>
-
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="participantClass" class="form-label justify-content-start">Classe du participant</label>
                                                     <input type="text" class="form-control" id="participantClass" required>
-                                                    
+                                                        <?php
+                                                         $dsn = "mysql:host=localhost;dbname=test";
+                            $user = "root";
+                            $password = "";
+                            try {
+                            $pdo = new PDO($dsn, $user, $password, [
+
+                            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+                                
+                            ]);
+                            } catch (PDOException $e) {
+                            die("Erreur de connexion : " . $e->getMessage());
+                            }
+                            $nom = $_POST['participantName'];
+                            $classe = $_POST['participantClass'];
+                            $sql = " INSERT INTO candidat (nom, classe) VALUES (:nom, :classe)";
+                            $stmt = $pdo->query($sql);
+                            $ajoutPart = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                            ?>
                                                 </div>
                                             </form>
                                         </div>
@@ -265,7 +299,7 @@
                         <!-- Tableau des participants. Je compte sur toi pour le remplir Celio 
                                                         avec ton magiques PHP et SQL ;)-->
                             <?php
-                            $dsn = "mysql:host=adresse_ip;dbname=test";
+                            $dsn = "mysql:host=localhost;dbname=test";
                             $user = "root";
                             $password = "";
 
