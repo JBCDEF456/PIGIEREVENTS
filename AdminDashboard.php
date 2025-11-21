@@ -51,12 +51,12 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link text-white btncustom sidebar-link" id="participants-link" data-bs-target="participants-section">
+                            <a href="api.php" class="nav-link text-white btncustom sidebar-link" id="participants-link" data-bs-target="participants-section">
                                 <i class="bi bi-question-circle me-2"></i> Gestions des participants
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link text-white btncustom sidebar-link" id="votes-link" data-bs-target="votes-section">
+                            <a href="api.php" class="nav-link text-white btncustom sidebar-link" id="votes-link" data-bs-target="votes-section">
                                 <i class="bi bi-table me-2"></i> Gestions des votes
                             </a>
                         </li>
@@ -132,7 +132,7 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <form id="addCategoryForm" method="post">
+                                            <form id="addCategoryForm" action="api.php" method="post">
                                                 <div class="mb-3">
                                                     <label for="categoryName" class="form-label justify-content-start">Nom de la categorie</label>
                                                     <input type="text" class="form-control" id="categoryName" required>
@@ -173,7 +173,7 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <form id="addParticipantsForm" method="post">
+                                            <form id="addParticipantsForm" action="api.php" method="post">
                                                 <div class="mb-3">
                                                     <label for="participantName" class="form-label justify-content-start">Nom du participant</label>
                                                     <input type="text" class="form-control" id="participantName" required>
