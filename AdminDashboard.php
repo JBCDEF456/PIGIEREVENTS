@@ -98,6 +98,24 @@
                                 <div class="card">
                                     <div class="card-body justify-content-center text-center">
                                         <h5 class="card-title">Fonds collectes sur OM</h5>
+                                        <?php
+                            $dsn = "mysql:host=adresse_ip;dbname=test";
+                            $user = "root";
+                            $password = "";
+
+                            try {
+                            $pdo = new PDO($dsn, $user, $password, [
+                            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+                                            ]);
+                            } catch (PDOException $e) {
+                            die("Erreur de connexion : " . $e->getMessage());
+                            }
+                            $sql = "SELECT SUM(montant)
+                            FROM vote
+                            WHERE operateur = 'Orange Money'";
+                            $stmt = $pdo->query($sql);
+                            $fondsOM = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                            ?>
                                     </div>
                                 </div>
                             </div>
@@ -105,6 +123,24 @@
                                 <div class="card">
                                     <div class="card-body justify-content-center text-center">
                                         <h5 class="card-title">Fonds collectes sur MTN</h5>
+                                        <?php
+                            $dsn = "mysql:host=adresse_ip;dbname=test";
+                            $user = "root";
+                            $password = "";
+
+                            try {
+                            $pdo = new PDO($dsn, $user, $password, [
+                            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+                                            ]);
+                            } catch (PDOException $e) {
+                            die("Erreur de connexion : " . $e->getMessage());
+                            }
+                            $sql = "SELECT SUM(montant)
+                            FROM vote
+                            WHERE operateur = 'MTN MoMo'";
+                            $stmt = $pdo->query($sql);
+                            $fondsMoMo = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                            ?>
                                     </div>
                                 </div>
                             </div>
@@ -115,6 +151,25 @@
                 <div class="section-content d-none" id="results-section">
                     <div class="container justify-content-center text-center">
                         <h1>Section des resultats</h1>
+                            <?php
+                            $dsn = "mysql:host=adresse_ip;dbname=test";
+                            $user = "root";
+                            $password = "";
+
+                            try {
+                            $pdo = new PDO($dsn, $user, $password, [
+                            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+                                            ]);
+                            } catch (PDOException $e) {
+                            die("Erreur de connexion : " . $e->getMessage());
+                            }
+                            $sql = "SELECT c.nom_cat AS Categorie, r.nom AS 'Nom Candidat', r.prenom AS 'Prenom Candidat', r.nombre_vote AS 'Votes totaux'
+                            FROM resultats r JOIN categorie c ON c.id_cat = r.id_cat
+                            GROUP BY c.nom_cat
+                            ORDER BY r.nombre_vote DESC";
+                            $stmt = $pdo->query($sql);
+                            $resultats = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                            ?>
                     </div>
                 </div>
 
@@ -150,6 +205,23 @@
                     <div class="container">
                         <!-- Tableau des votes. Je compte sur toi pour le remplir Celio 
                                                         avec ton magiques PHP et SQL ;)-->
+                            <?php
+                            $dsn = "mysql:host=adresse_ip;dbname=test";
+                            $user = "root";
+                            $password = "";
+
+                            try {
+                            $pdo = new PDO($dsn, $user, $password, [
+                            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+                                            ]);
+                            } catch (PDOException $e) {
+                            die("Erreur de connexion : " . $e->getMessage());
+                            }
+                            $sql = " SELECT numero_tel AS Numero, montant AS Montant, montant/100 AS Votes, date_vote as 'Effectue', nom AS Candidat 
+                            FROM vote";
+                            $stmt = $pdo->query($sql);
+                            $tableau = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                            ?>
 
                     </div>
                 </div>
@@ -172,10 +244,12 @@
                                                 <div class="mb-3">
                                                     <label for="participantName" class="form-label justify-content-start">Nom du participant</label>
                                                     <input type="text" class="form-control" id="participantName" required>
+
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="participantClass" class="form-label justify-content-start">Classe du participant</label>
                                                     <input type="text" class="form-control" id="participantClass" required>
+                                                    
                                                 </div>
                                             </form>
                                         </div>
@@ -190,7 +264,23 @@
                     <div class="container">
                         <!-- Tableau des participants. Je compte sur toi pour le remplir Celio 
                                                         avec ton magiques PHP et SQL ;)-->
+                            <?php
+                            $dsn = "mysql:host=adresse_ip;dbname=test";
+                            $user = "root";
+                            $password = "";
 
+                            try {
+                            $pdo = new PDO($dsn, $user, $password, [
+                            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+                                            ]);
+                            } catch (PDOException $e) {
+                            die("Erreur de connexion : " . $e->getMessage());
+                            }
+                            $sql = "SELECT *
+                            FROM candidat";
+                            $stmt = $pdo->query($sql);
+                            $affichageCandidat = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                            ?>
                     </div>
                     
                 </div>
