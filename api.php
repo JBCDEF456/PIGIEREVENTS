@@ -12,7 +12,7 @@
                             die("Erreur de connexion : " . $e->getMessage());
                             }
                             
-                            if (isset($_POST['participantName']) && isset($_POST['participantClass'])) {
+                            if (isset($_POST['participantName']) && isset($_POST['participantClass']) && isset($_POST['participantImage'])) {
                                 $nom = $_POST['participantName'];
                                 $classe = $_POST['participantClass'];
                                 $image = $_POST['participantImage'];
