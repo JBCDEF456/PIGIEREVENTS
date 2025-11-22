@@ -134,6 +134,7 @@
                                             <th>Photo</th>
                                             <th>Events</th>
                                             <th>Description</th>
+                                            <th>Status</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
@@ -168,7 +169,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
-                                                <button type="submit" class="btn btn-success" id="saveCategoryBtn">Enregistrer</button>
+                                                <button type="submit" class="btn btn-success" id="saveCategoryBtn" name="submitCategory" >Enregistrer</button>
                                             </div>
                                         </div>
                                     </div>

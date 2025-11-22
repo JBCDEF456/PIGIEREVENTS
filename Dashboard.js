@@ -134,8 +134,8 @@ function getEvents(){
                 conteneur.innerHTML += `<tr>
                     <td>${event.photo}</td>
                     <td>${event.nom_cat}</td>
-                    <td><span class="${badgeClass}">${event.isActive}</span></td>
                     <td>${event.description}</td>
+                    <td><span class="${badgeClass}">${event.isActive}</span></td>
                     <td>
                         <button class="btn btn-sm btn-danger delete-event-btn" data-event-id="${event.id}">Supprimer</button>
                         <button class="btn btn-sm btn-primary update-event-btn" data-event-id="${event.id}">Modifier</button>

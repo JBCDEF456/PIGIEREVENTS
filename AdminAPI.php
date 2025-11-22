@@ -12,6 +12,8 @@ session_start();
         return json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
     }
 
+    //
+
     $dsn = "mysql:host=localhost;dbname=test";
     $user = "root";
     $password = "";
@@ -35,6 +37,19 @@ session_start();
         } else {
             echo json_encode(["error" => "Aucune action spécifiée"]);
         }
+
+       /* if(isset($_POST["submitCategory"])){
+            $nom_cat = $_POST['categoryName']; 
+            $sql = "INSERT INTO categorie (nom_cat) VALUES (:nom_cat)";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':nom_cat', $nom_cat);
+            $stmt->execute();
+
+            echo json_encode(["status" => "success"]);
+            header("Location: AdminDashboard.php");
+            exit();
+
+        }*/
     } catch (PDOException $e){
         die("Erreur de connexion : " . $e->getMessage()); 
     }
