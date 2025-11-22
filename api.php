@@ -8,11 +8,8 @@
                             $pdo = new PDO($dsn, $user, $password, [
                             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
                                             ]);
-                            } catch (PDOException $e) {
-                            die("Erreur de connexion : " . $e->getMessage());
-                            }
-                            
-                            if (isset($_POST['participantName']) && isset($_POST['participantClass']) && isset($_POST['participantImage'])) {
+
+                                            if (isset($_POST['participantName']) && isset($_POST['participantClass']) && isset($_POST['participantImage'])) {
                                 $nom = $_POST['participantName'];
                                 $classe = $_POST['participantClass'];
                                 $image_cand = $_POST['participantImage'];
@@ -48,5 +45,10 @@
                             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             echo json_encode($result);
                             exit();
+                            } catch (PDOException $e) {
+                            die("Erreur de connexion : " . $e->getMessage());
+                            }
+                            
+                            
 
 ?>

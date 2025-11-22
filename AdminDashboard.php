@@ -46,7 +46,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link text-white btncustom sidebar-link" id="results-link" data-bs-target="results-section">
+                            <a href="api.php" class="nav-link text-white btncustom sidebar-link" id="results-link" data-bs-target="results-section">
                                 <i class="bi bi-speedometer2 me-2"></i> Resultats
                             </a>
                         </li>
