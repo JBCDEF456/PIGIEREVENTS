@@ -21,7 +21,7 @@ try {
         $stmt->bindParam(':image_cand', $image_cand);
         if ($stmt->execute()) {
         echo "Enregistrement réussi !";
-        header("Location: Home(NoLog).html");
+        header("Location: AdminDashboard.php");
         exit();
     } else {
         echo "Une erreur est survenue.";
@@ -35,8 +35,7 @@ try {
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':nom_cat', $nom_cat);
         if ($stmt->execute()) {
-        echo "Enregistrement réussi !";
-        header("Location: Home(NoLog).html");
+            header("Location: AdminDashboard.php");
         exit();
     } else {
         echo "Une erreur est survenue.";
@@ -54,10 +53,11 @@ try {
         $stmt = $pdo->query($sql);
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         echo json_encode($result);
+        header("Location: AdminDashboard.php");
     }
 
 } catch (PDOException $e) {
     echo json_encode(["error" => $e->getMessage()]);
 }
-header("Location: AdminDashboard.php")
+header("Location: AdminDashboard.php");
 ?>
