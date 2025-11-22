@@ -144,34 +144,36 @@
                             </div>
                         </div>
                     </div>
-                        <div class="modal fade" id="addCategoryModal" tabindex="-1" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title " id="addCategoryModalLabel">Ajouter une categorie de vote</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form id="addCategoryForm" action="api.php" method="post">
-                                                <div class="mb-3">
-                                                    <label for="categoryName" class="form-label justify-content-start">Nom de la categorie</label>
-                                                    <input type="text" class="form-control" id="categoryName" name="categoryName" required>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <div class="input-group">
-                                                        <input type="file" class="form-control" id="categoryImage" name="categoryImage" accept="image/*" required>
-                                                        <label class="input-group-text" for="categoryImage">Image categorie</label>
+                        <form id="addCategoryForm" action="api.php" method="post">
+                            <div class="modal fade" id="addCategoryModal" tabindex="-1" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title " id="addCategoryModalLabel">Ajouter une categorie de vote</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form id="addCategoryForm" action="api.php" method="post">
+                                                    <div class="mb-3">
+                                                        <label for="categoryName" class="form-label justify-content-start">Nom de la categorie</label>
+                                                        <input type="text" class="form-control" id="categoryName" name="categoryName" required>
                                                     </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
-                                            <button type="button" class="btn btn-success" id="saveCategoryBtn">Enregistrer</button>
+                                                    <div class="mb-3">
+                                                        <div class="input-group">
+                                                            <input type="file" class="form-control" id="categoryImage" name="categoryImage" accept="image/*" required>
+                                                            <label class="input-group-text" for="categoryImage">Image categorie</label>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
+                                                <button type="submit" class="btn btn-success" id="saveCategoryBtn">Enregistrer</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </form>
                     <div class="container">
                         <!-- Tableau des votes. Je compte sur toi pour le remplir Celio 
                                                         avec ton magiques PHP et SQL ;)-->
@@ -206,40 +208,41 @@
                         </div>
                     </div>
                     </div>
-                    
-                            <div class="modal fade" id="addParticipants" tabindex="-1" aria-labelledby="addParticipantsLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title " id="addParticipantsLabel">Ajouter un participant</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form id="addParticipantsForm" action="api.php" method="post">
-                                                <div class="mb-3">
-                                                    <label for="participantName" class="form-label justify-content-start">Nom du participant</label>
-                                                    <input type="text" class="form-control" id="participantName" name="participantName" required>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="participantClass" class="form-label justify-content-start">Classe du participant</label>
-                                                    <input type="text" class="form-control" id="participantClass" name="participantClass" required>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <div class="input-group">
-                                                        <input type="file" class="form-control" id="participantPhoto" name="participantPhoto" accept="image/*" required>
-                                                        <label class="input-group-text" for="participantPhoto">Photo participants</label>
+                        <form id="addParticipantsForm" action="api.php" method="post">
+                                <div class="modal fade" id="addParticipants" tabindex="-1" aria-labelledby="addParticipantsLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title " id="addParticipantsLabel">Ajouter un participant</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                
+                                                    <div class="mb-3">
+                                                        <label for="participantName" class="form-label justify-content-start">Nom du participant</label>
+                                                        <input type="text" class="form-control" id="participantName" name="participantName" required>
                                                     </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
-                                            <button type="button" class="btn btn-success" id="saveCategoryBtn">Enregistrer</button>
+                                                    <div class="mb-3">
+                                                        <label for="participantClass" class="form-label justify-content-start">Classe du participant</label>
+                                                        <input type="text" class="form-control" id="participantClass" name="participantClass" required>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <div class="input-group">
+                                                            <input type="file" class="form-control" id="participantPhoto" name="participantPhoto" accept="image/*" required>
+                                                            <label class="input-group-text" for="participantPhoto">Photo participants</label>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
+                                                <button type="submit" class="btn btn-success" id="saveCategoryBtn">Enregistrer</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </form>
                     <div class="container">
                         <!-- Tableau des participants. Je compte sur toi pour le remplir Celio 
                                                         avec ton magiques PHP et SQL ;)-->
