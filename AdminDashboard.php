@@ -98,24 +98,6 @@
                                 <div class="card">
                                     <div class="card-body justify-content-center text-center">
                                         <h5 class="card-title">Fonds collectes sur OM</h5>
-                                        <?php //1
-                                            $dsn = "mysql:host=localhost;dbname=test";
-                                            $user = "root";
-                                            $password = "";
-
-                                            try {
-                                            $pdo = new PDO($dsn, $user, $password, [
-                                            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-                                                            ]);
-                                            } catch (PDOException $e) {
-                                            die("Erreur de connexion : " . $e->getMessage());
-                                            }
-                                            $sql = "SELECT SUM(montant)
-                                            FROM vote
-                                            WHERE operateur = 'Orange Money'";
-                                            $stmt = $pdo->query($sql);
-                                            $fondsOM = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                                            ?>
                                     </div>
                                 </div>
                             </div>
@@ -123,25 +105,6 @@
                                 <div class="card">
                                     <div class="card-body justify-content-center text-center">
                                         <h5 class="card-title">Fonds collectes sur MTN</h5>
-                                        <?php
-                            //2
-                            $dsn = "mysql:host=localhost;dbname=test";
-                            $user = "root";
-                            $password = "";
-
-                            try {
-                            $pdo = new PDO($dsn, $user, $password, [
-                            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-                                            ]);
-                            } catch (PDOException $e) {
-                            die("Erreur de connexion : " . $e->getMessage());
-                            }
-                            $sql = "SELECT SUM(montant)
-                            FROM vote
-                            WHERE operateur = 'MTN MoMo'";
-                            $stmt = $pdo->query($sql);
-                            $fondsMoMo = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                            ?>
                                     </div>
                                 </div>
                             </div>
@@ -152,36 +115,36 @@
                 <div class="section-content d-none" id="results-section">
                     <div class="container justify-content-center text-center">
                         <h1>Section des resultats</h1>
-                            <?php
-                            // 3
-                            $dsn = "mysql:host=localhost;dbname=test";
-                            $user = "root";
-                            $password = "";
-
-                            try {
-                            $pdo = new PDO($dsn, $user, $password, [
-                            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-                                            ]);
-                            } catch (PDOException $e) {
-                            die("Erreur de connexion : " . $e->getMessage());
-                            }
-                            $sql = "SELECT c.nom_cat AS Categorie, r.nom AS 'Nom Candidat', r.nombre_vote AS 'Votes totaux'
-                            FROM resultats r JOIN categorie c ON c.id_cat = r.id_cat
-                            GROUP BY c.nom_cat
-                            ORDER BY r.nombre_vote DESC";
-                            $stmt = $pdo->query($sql);
-                            $resultats = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                            ?>
                     </div>
                 </div>
 
                 <div class="section-content d-none" id="votes-section">
                     <div class="container justify-content-center text-center">
                         <h1>Section de gestion des votes</h1>
-                    </div>
                         <div class="row col-lg-4 col-md-7 col-6 mx-auto mt-4">
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCategoryModal">Ajouter une categorie de vote</button>
-                            <div class="modal fade" id="addCategoryModal" tabindex="-1" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addParticipants">Ajouter un participant</button>
+                    </div>
+                    <div id="section-user-list" class="page-section mt-3">
+                        <h3 class="text-center">Listes des evenements</h3>
+                        <div class="card-shadow-sm">
+                            <div class="card-body">
+                                <table class="table table-hover">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>Photo</th>
+                                            <th>Events</th>
+                                            <th>Description</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="liste-clients-body">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="modal fade" id="addCategoryModal" tabindex="-1" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -193,26 +156,6 @@
                                                 <div class="mb-3">
                                                     <label for="categoryName" class="form-label justify-content-start">Nom de la categorie</label>
                                                     <input type="text" class="form-control" id="categoryName" required>
-                                                    <?php 
-                                                    //4
-                                                    /*
-                                                        $dsn = "mysql:host=localhost;dbname=test";
-                                                        $user = "root";
-                                                        $password = "";
-
-                                                        try {
-                                                        $pdo = new PDO($dsn, $user, $password, [
-                                                        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-                                                                        ]);
-                                                        } catch (PDOException $e) {
-                                                        die("Erreur de connexion : " . $e->getMessage());
-                                                        }
-                                                        $nom_cat = $_POST['categoryName']; 
-                                                        $sql = " INSERT INTO categorie (nom_cat) VALUES (:nom_cat)";
-                                                        $stmt = $pdo->query($sql);
-                                                        $ajoutCat = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                                                      */  
-                                                        ?> 
                                                 </div>
                                                 <div class="mb-3">
                                                     <div class="input-group">
@@ -229,38 +172,42 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
                     <div class="container">
                         <!-- Tableau des votes. Je compte sur toi pour le remplir Celio 
                                                         avec ton magiques PHP et SQL ;)-->
-                            <?php
-                            /*
-                            $dsn = "mysql:host=localhost;dbname=test";
-                            $user = "root";
-                            $password = "";
-
-                            try {
-                            $pdo = new PDO($dsn, $user, $password, [
-                            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-                                            ]);
-                            } catch (PDOException $e) {
-                            die("Erreur de connexion : " . $e->getMessage());
-                            }
-                            $sql = " SELECT numero_tel AS Numero, montant AS Montant, montant/100 AS Votes, date_vote as 'Effectue', nom AS Candidat 
-                            FROM vote";
-                            $stmt = $pdo->query($sql);
-                            $tableau = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                            */?>
 
                     </div>
                 </div>
+            </div>
 
                 <div class="section-content d-none" id="participants-section">
                     <div class="container justify-content-center text-center">
                         <h1>Section de gestion des participants</h1>
-                    </div>
                         <div class="row col-lg-4 col-md-7 col-6 mx-auto mt-4">
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addParticipants">Ajouter un participant</button>
+                    </div>
+                    <div id="section-user-list" class="page-section mt-3">
+                        <h3 class="text-center">Listes des participants aux evenements</h3>
+                        <div class="card-shadow-sm">
+                            <div class="card-body">
+                                <table class="table table-hover">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>Photo</th>
+                                            <th>Nom</th>
+                                            <th>Classe</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="liste-clients-body">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    
                             <div class="modal fade" id="addParticipants" tabindex="-1" aria-labelledby="addParticipantsLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
@@ -277,24 +224,6 @@
                                                 <div class="mb-3">
                                                     <label for="participantClass" class="form-label justify-content-start">Classe du participant</label>
                                                     <input type="text" class="form-control" id="participantClass" required>
-                                                        <?php
-                                                        /*
-                                                         $dsn = "mysql:host=localhost;dbname=test";
-                                                        $user = "root";
-                                                        $password = "";
-                                                        try {
-                                                        $pdo = new PDO($dsn, $user, $password, [
-
-                                                            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
-                                                            } catch (PDOException $e) {
-                                                            die("Erreur de connexion : " . $e->getMessage());
-                                                            }
-                                                            $nom = $_POST['participantName'];
-                                                            $classe = $_POST['participantClass'];
-                                                            $sql = " INSERT INTO candidat (nom, classe) VALUES (:nom, :classe)";
-                                                            $stmt = $pdo->query($sql);
-                                                            $ajoutPart = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                                                            */?>
                                                 </div>
                                                 <div class="mb-3">
                                                     <div class="input-group">
@@ -315,23 +244,6 @@
                     <div class="container">
                         <!-- Tableau des participants. Je compte sur toi pour le remplir Celio 
                                                         avec ton magiques PHP et SQL ;)-->
-                            <?php
-                            /*$dsn = "mysql:host=localhost;dbname=test";
-                            $user = "root";
-                            $password = "";
-
-                            try {
-                            $pdo = new PDO($dsn, $user, $password, [
-                            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-                                            ]);
-                            } catch (PDOException $e) {
-                            die("Erreur de connexion : " . $e->getMessage());
-                            }
-                            $sql = "SELECT *
-                            FROM candidat";
-                            $stmt = $pdo->query($sql);
-                            $affichageCandidat = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                            */?>
                     </div>
                     
                 </div>
