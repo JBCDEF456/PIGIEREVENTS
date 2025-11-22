@@ -77,7 +77,7 @@
                     <div class="container justify-content-center text-center">
                         <h1>Bienvenue sur le tableau de bord Admin</h1>
                     </div>
-                        <div class="row">
+                        <div class="row mt-4">
                             <div class="col-md-6 mb-4 ">
                                 <div class="card">
                                     <div class="card-body justify-content-center text-center">
@@ -124,7 +124,7 @@
                         <div class="row col-lg-4 col-md-7 col-6 mx-auto mt-4">
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addParticipants">Ajouter un participant</button>
                     </div>
-                    <div id="section-user-list" class="page-section mt-3">
+                    <div id="section-events-list" class="page-section mt-3">
                         <h3 class="text-center">Listes des evenements</h3>
                         <div class="card-shadow-sm">
                             <div class="card-body">
