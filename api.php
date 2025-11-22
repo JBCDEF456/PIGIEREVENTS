@@ -15,8 +15,8 @@
                             if (isset($_POST['participantName']) && isset($_POST['participantClass']) && isset($_POST['participantImage'])) {
                                 $nom = $_POST['participantName'];
                                 $classe = $_POST['participantClass'];
-                                $image = $_POST['participantImage'];
-                                $sql = " INSERT INTO candidat (nom, classe, image_cand) VALUES (:nom, :classe, :image)";
+                                $image_cand = $_POST['participantImage'];
+                                $sql = " INSERT INTO candidat (nom, classe, image_cand) VALUES (:nom, :classe, :image_cand)";
 
                             }else if(isset($_POST['categoryName'])){
                                 $nom_cat = $_POST['categoryName']; 
