@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `candidat` (
   `nom` varchar(50) NOT NULL,
   `classe` varchar(15) NOT NULL,
-  `image` varchar(100) NOT NULL
+  `image_cand` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
