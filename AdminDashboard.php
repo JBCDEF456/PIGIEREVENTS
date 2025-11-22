@@ -137,7 +137,7 @@
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="liste-clients-body">
+                                    <tbody id="liste-events-body">
 
                                     </tbody>
                                 </table>
@@ -198,7 +198,7 @@
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="liste-clients-body">
+                                    <tbody id="liste-user-body">
 
                                     </tbody>
                                 </table>

@@ -17,6 +17,12 @@ document.addEventListener("DOMContentLoaded", function () {
             n.classList.remove("active");
             if(n.getAttribute("data-bs-target") ===  activeSection){
                 n.classList.add("active");
+                if(activeSection === "participants-section"){
+                    getParticipants();
+                }
+                if(activeSection === "votes-section"){
+                    getEvents();
+                }
             }
         });
     }else{
@@ -61,6 +67,12 @@ document.addEventListener("DOMContentLoaded", function () {
             console.log("j'affiche les elements de Target Section:", targetSection); // Debug: log the target section element
             if (targetSection) {
                 targetSection.classList.remove("d-none");
+                if(targetId === "participants-section"){
+                    getParticipants();
+                }
+                if(targetId === "votes-section"){
+                    getEvents();
+                }
             }
 
             //Management de la sidebar sur mobile
@@ -75,3 +87,63 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
 });
+
+
+function getParticipants(){
+    console.log("Récupération des participants...");
+    const conteneur = document.getElementById("liste-user-body");
+    conteneur.innerHTML = "";
+    fetch("AdminAPI.php?action=participants")
+    .then(response => response.json())
+    .then(data => {
+        if(data.length === 0){
+            conteneur.innerHTML = `<tr><td colspan='5' class='text-center'>Aucun participant trouvé.</td></tr>`;
+        }else{
+            conteneur.innerHTML = "";
+            data.forEach(user => {
+                conteneur.innerHTML += `<tr>
+                    <td>${user.photo}</td>
+                    <td>${user.nom}</td>
+                    <td>${user.classe}</td>
+                    <td>${user.actions}</td>
+                    <td>
+                        <button class="btn btn-sm btn-danger delete-user-btn" data-user-id="${user.id}">Supprimer</button>
+                        <button class="btn btn-sm btn-primary update-user-btn" data-user-id="${user.id}">Modifier</button>
+                    </td>
+                </tr>
+                `;
+            });
+        }
+    })
+    .catch(error => { console.error("Erreur lors de la récupération des participants:", error); });
+}
+
+function getEvents(){
+    console.log("Récupération des événements...");
+    const conteneur = document.getElementById("liste-events-body");
+    conteneur.innerHTML = "";
+    fetch("AdminAPI.php?action=categories")
+    .then(response => response.json())
+    .then(data => {
+        if(data.length === 0){
+            conteneur.innerHTML = `<tr><td colspan='5' class='text-center'>Aucun événement trouvé.</td></tr>`;
+        }else{
+            conteneur.innerHTML = "";
+            data.forEach(event => {
+                let badgeClass = event.isActive === "Actif" ? "badge rounded-pill text-bg-success" : "badge rounded-pill text-bg-danger";
+                conteneur.innerHTML += `<tr>
+                    <td>${event.photo}</td>
+                    <td>${event.nom_cat}</td>
+                    <td><span class="${badgeClass}">${event.isActive}</span></td>
+                    <td>${event.description}</td>
+                    <td>
+                        <button class="btn btn-sm btn-danger delete-event-btn" data-event-id="${event.id}">Supprimer</button>
+                        <button class="btn btn-sm btn-primary update-event-btn" data-event-id="${event.id}">Modifier</button>
+                    </td>
+                </tr>
+                `;
+            });
+        }
+    })
+    .catch(error => { console.error("Erreur lors de la récupération des événements:", error); });
+}
