@@ -1,4 +1,5 @@
-<?php 
+<?php
+session_start(); 
     header('Content-Type: application/json');
 
     function getParticipants($pdo){
