@@ -19,7 +19,13 @@ try {
         $stmt->bindParam(':nom', $nom);
         $stmt->bindParam(':classe', $classe);
         $stmt->bindParam(':image_cand', $image_cand);
-        $stmt->execute();
+        if ($stmt->execute()) {
+        echo "Enregistrement réussi !";
+        header("Location: Home(NoLog).html");
+        exit();
+    } else {
+        echo "Une erreur est survenue.";
+    }
 
         echo json_encode(["status" => "success"]);
     }
@@ -28,7 +34,13 @@ try {
         $sql = "INSERT INTO categorie (nom_cat) VALUES (:nom_cat)";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':nom_cat', $nom_cat);
-        $stmt->execute();
+        if ($stmt->execute()) {
+        echo "Enregistrement réussi !";
+        header("Location: Home(NoLog).html");
+        exit();
+    } else {
+        echo "Une erreur est survenue.";
+    }
 
         echo json_encode(["status" => "success"]);
     }
