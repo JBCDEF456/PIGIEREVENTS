@@ -155,11 +155,11 @@
                                             <form id="addCategoryForm" action="api.php" method="post">
                                                 <div class="mb-3">
                                                     <label for="categoryName" class="form-label justify-content-start">Nom de la categorie</label>
-                                                    <input type="text" class="form-control" id="categoryName" required>
+                                                    <input type="text" class="form-control" id="categoryName" name="categoryName" required>
                                                 </div>
                                                 <div class="mb-3">
                                                     <div class="input-group">
-                                                        <input type="file" class="form-control" id="categoryImage" accept="image/*" required>
+                                                        <input type="file" class="form-control" id="categoryImage" name="categoryImage" accept="image/*" required>
                                                         <label class="input-group-text" for="categoryImage">Image categorie</label>
                                                     </div>
                                                 </div>
@@ -218,15 +218,15 @@
                                             <form id="addParticipantsForm" action="api.php" method="post">
                                                 <div class="mb-3">
                                                     <label for="participantName" class="form-label justify-content-start">Nom du participant</label>
-                                                    <input type="text" class="form-control" id="participantName" required>
+                                                    <input type="text" class="form-control" id="participantName" name="participantName" required>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="participantClass" class="form-label justify-content-start">Classe du participant</label>
-                                                    <input type="text" class="form-control" id="participantClass" required>
+                                                    <input type="text" class="form-control" id="participantClass" name="participantClass" required>
                                                 </div>
                                                 <div class="mb-3">
                                                     <div class="input-group">
-                                                        <input type="file" class="form-control" id="participantPhoto" accept="image/*" required>
+                                                        <input type="file" class="form-control" id="participantPhoto" name="participantPhoto" accept="image/*" required>
                                                         <label class="input-group-text" for="participantPhoto">Photo participants</label>
                                                     </div>
                                                 </div>
