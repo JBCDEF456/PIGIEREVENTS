@@ -122,7 +122,7 @@
                     <div class="container justify-content-center text-center">
                         <h1>Section de gestion des votes</h1>
                         <div class="row col-lg-4 col-md-7 col-6 mx-auto mt-4">
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addParticipants">Ajouter un participant</button>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCategoryModal">Ajouter un evenements</button>
                     </div>
                     <div id="section-events-list" class="page-section mt-3">
                         <h3 class="text-center">Listes des evenements</h3>
