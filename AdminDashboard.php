@@ -175,10 +175,6 @@
                     <div class="container">
                         <!-- Tableau des votes. Je compte sur toi pour le remplir Celio 
                                                         avec ton magiques PHP et SQL ;)-->
-<<<<<<< HEAD
-
-=======
->>>>>>> b6c3fe77764f3edb3727c3908164e407ac160be0
                     </div>
                 </div>
             </div>
