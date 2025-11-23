@@ -123,6 +123,10 @@ function getParticipants(){
     .catch(error => { console.error("Erreur lors de la récupération des participants:", error); });
 }
 
+function notifyMessage(message, type){
+
+}
+
 function deleteEvents(item){
     const conteneur = document.getElementById("text");
     const userID = item.getAttribute('data-event-id');
@@ -143,6 +147,40 @@ function deleteEvents(item){
             .catch(error => console.error('Erreur fetch: ', error));
     });
 }
+
+//Gestion dynamique des actions execute
+function actionEvent(item){
+    const itemType = item.getAttribute("data-type");
+    const itemAction = item.getAttribute("data-action");
+    if(itemAction === "delete"){
+        switch (itemType) {
+            case 'category':
+                
+                break;
+            case 'participants':
+
+                break;
+        
+            default:
+                break;
+        }
+    }else if(itemAction === "update"){
+        switch (itemType) {
+            case 'category':
+                
+                break;
+            case 'participants':
+
+                break;
+        
+            default:
+                break;
+        }
+    }else{
+
+    }
+}
+
 
 function getEvents(){
     console.log("Récupération des événements...");
