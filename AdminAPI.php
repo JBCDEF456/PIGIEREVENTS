@@ -96,21 +96,22 @@ session_start();
 
         }
 
-        if(isset($_GET['delEvents'])){
-            $id = $_GET['delEvents'];
-            $image = "SELECT img_cat FROM categorie WHERE id_cat = :id";
+        if(isset($_GET['delEvent'], $_GET['type'])){
+            $id = $_GET['delEvent'];
+            $type = $_GET['type'];
+            $image = "SELECT img_cat FROM $type WHERE id_cat = :id";
             $stmt_img = $pdo->prepare($image);
-            $stmt_img->execute([':id' => $id]);
+            $stmt_img->bindParam(':id', $id);
+            $stmt_img->execute();
             $img_to_delete = $stmt_img->fetch(PDO::FETCH_ASSOC);
             $file = $img_to_delete['img_cat'] ?? null;
             if(unlink($file)){
                 echo"GOOD";
             }
-            $sql = "DELETE FROM categorie WHERE id_cat = :id";
+            $sql = "DELETE FROM $type WHERE id_cat = :id";
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(':id', $id);
             $stmt->execute();
-            echo "L'evenement est parti";
             header("Location: AdminDashboard.php");
         }
     } catch (PDOException $e){

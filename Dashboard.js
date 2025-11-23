@@ -112,7 +112,7 @@ function getParticipants(){
                     <td class="align-middle ">${user.nom}</td>
                     <td class="align-middle">${user.classe}</td>
                     <td>
-                        <button class="btn btn-sm btn-danger delete-user-btn" data-user-id="${user.id}">Supprimer</button>
+                        <button class="btn btn-sm btn-danger delete-user-btn" data-user-id="${user.id}" data-event-name="${user.nom}" data-bs-toggle="modal" data-type="candidat" data-action="delete" data-bs-target="#delete-notify" onclick=actionEvent(this)>Supprimer</button>
                         <button class="btn btn-sm btn-primary update-user-btn" data-user-id="${user.id}">Modifier</button>
                     </td>
                 </tr>
@@ -127,11 +127,11 @@ function notifyMessage(message, type){
 
 }
 
-function deleteEvents(item){
+function deleteEvents(item,type){
     const conteneur = document.getElementById("text");
     const userID = item.getAttribute('data-event-id');
-    conteneur.innerHTML = `Voulez vous vraiment supprimer: ${userID}`;
-    const url = `AdminAPI.php?delEvents=${userID}`;
+    conteneur.innerHTML = `Voulez vous vraiment supprimer: ${item.getAttribute('data-event-name')}`;
+    const url = `AdminAPI.php?delEvent=${userID}&type=${type}`;
     const supprimer = document.getElementById("confirm-delete-btn");
     supprimer.setAttribute("data-bs-dismiss", "modal");
     supprimer.addEventListener("click", function(){
@@ -153,29 +153,9 @@ function actionEvent(item){
     const itemType = item.getAttribute("data-type");
     const itemAction = item.getAttribute("data-action");
     if(itemAction === "delete"){
-        switch (itemType) {
-            case 'category':
-                
-                break;
-            case 'participants':
-
-                break;
-        
-            default:
-                break;
-        }
+        deleteEvents(item,itemType);
     }else if(itemAction === "update"){
-        switch (itemType) {
-            case 'category':
-                
-                break;
-            case 'participants':
-
-                break;
-        
-            default:
-                break;
-        }
+        deleteEvents(item,itemType);
     }else{
 
     }
@@ -203,9 +183,9 @@ function getEvents(){
                     <td class="align-middle text-center" data-bs-toggle="tooltip" data-bs-placement="top" title="${event.des_cat}"><div class="text-truncate text-center" style="max-width: 300px;">${event.des_cat}</div></td>
                     <td><span class="${badgeClass} align-middle">${statusText}</span></td>
                     <td>
-                        <button class="btn btn-sm btn-danger delete-event-btn align-middle" data-event-id="${event.id_cat}" data-bs-toggle="modal" data-bs-target="#delete-notify" onclick=deleteEvents(this)>Supprimer</button>
-                        <button class="btn btn-sm btn-primary update-event-btn align-middle" data-event-id="${event.id_cat}">Modifier</button>
-                        <button class="btn btn-sm btn-secondary manage-participants-btn align-middle" data-event-id="${event.id_cat}">Participants</button>
+                        <button class="btn btn-sm btn-danger delete-event-btn align-middle" data-event-id="${event.id_cat}" data-event-name="${event.nom_cat}" data-bs-toggle="modal" data-type="categorie" data-action="delete" data-bs-target="#delete-notify" onclick=actionEvent(this)>Supprimer</button>
+                        <button class="btn btn-sm btn-primary update-event-btn align-middle" data-event-id="${event.id_cat}" data-type="categorie" data-action="update" >Modifier</button>
+                        <button class="btn btn-sm btn-secondary manage-participants-btn align-middle" data-event-id="${event.id_cat}" data-type="categorie" data-action="participants" >Participants</button>
                     </td>
                 </tr>
                 `;
