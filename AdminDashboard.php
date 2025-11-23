@@ -308,7 +308,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
-                        <button type="submit" class="btn btn-success" id="saveCategoryBtn" name="submitParticipants">Enregistrer</button>
+                        <button type="submit" class="btn btn-success" data-bs-dismiss="modal" id="saveBtn" name="submitParticipants">Modifier</button>
                     </div>
                 </div>
             </div>
