@@ -108,12 +108,12 @@ function getParticipants(){
             conteneur.innerHTML = "";
             data.forEach(user => {
                 conteneur.innerHTML += `<tr>
-                    <td class="align-middle"><img src="${user.img_part}" alt="Photo de ${user.nom}" class="img-thumbnail table-thumbnail" style="width: 60px;height: 60px;object-fit: contain;border-radius: 10%; border-color: gray;" /></td>
+                    <td class="align-middle"><img src="${user.img}" alt="Photo de ${user.nom}" class="img-thumbnail table-thumbnail" style="width: 60px;height: 60px;object-fit: contain;border-radius: 10%; border-color: gray;" /></td>
                     <td class="align-middle ">${user.nom}</td>
                     <td class="align-middle">${user.classe}</td>
                     <td>
-                        <button class="btn btn-sm btn-danger delete-user-btn" data-user-id="${user.id}" data-event-name="${user.nom}" data-bs-toggle="modal" data-type="candidat" data-action="delete" data-bs-target="#delete-notify" onclick=actionEvent(this)>Supprimer</button>
-                        <button class="btn btn-sm btn-primary update-user-btn" data-user-id="${user.id}">Modifier</button>
+                        <button class="btn btn-sm btn-danger delete-user-btn" data-event-id="${user.id}" data-event-name="${user.nom}" data-bs-toggle="modal" data-type="candidat" data-action="delete" data-bs-target="#delete-notify" onclick=actionEvent(this)>Supprimer</button>
+                        <button class="btn btn-sm btn-primary update-user-btn" data-event-id="${user.id}" data-bs-target="#updatenotify" data-bs-toggle="modal">Modifier</button>
                     </td>
                 </tr>
                 `;
@@ -130,7 +130,7 @@ function notifyMessage(message, type){
 function deleteEvents(item,type){
     const conteneur = document.getElementById("text");
     const userID = item.getAttribute('data-event-id');
-    conteneur.innerHTML = `Voulez vous vraiment supprimer: ${item.getAttribute('data-event-name')}`;
+    conteneur.innerHTML = `Voulez vous vraiment supprimer: ${item.getAttribute('data-event-classe')}`;
     const url = `AdminAPI.php?delEvent=${userID}&type=${type}`;
     const supprimer = document.getElementById("confirm-delete-btn");
     supprimer.setAttribute("data-bs-dismiss", "modal");
@@ -139,13 +139,21 @@ function deleteEvents(item,type){
             .then(response => {
                 if(response.ok){
                     console.log("Action reussite, pas de contenu JSON");
-                    getEvents();
+                    if(type === 'categorie'){
+                        getEvents();
+                    }else{
+                        getParticipants();
+                    }
                 }else{
                     console.log("Erreur dans le processus");
                 }
             })
             .catch(error => console.error('Erreur fetch: ', error));
     });
+}
+
+function ModifyEvent(item,type){
+
 }
 
 //Gestion dynamique des actions execute
@@ -155,7 +163,7 @@ function actionEvent(item){
     if(itemAction === "delete"){
         deleteEvents(item,itemType);
     }else if(itemAction === "update"){
-        deleteEvents(item,itemType);
+        ModifyEvent(item,itemType);
     }else{
 
     }
@@ -178,14 +186,14 @@ function getEvents(){
                 let statusText = event.isActive === 1 ? "Active" : "Inactive";
                 conteneur.innerHTML += `
                 <tr>
-                    <td><img src="${event.img_cat}" alt="Image du ${event.nom_cat}" class="img-thumbnail table-thumbnail" style="width: 60px;height: 60px;object-fit: contain;border-radius: 10%; border-color: gray;" /></td>
+                    <td><img src="${event.img}" alt="Image du ${event.nom_cat}" class="img-thumbnail table-thumbnail" style="width: 60px;height: 60px;object-fit: contain;border-radius: 10%; border-color: gray;" /></td>
                     <td class="align-middle">${event.nom_cat}</td>
                     <td class="align-middle text-center" data-bs-toggle="tooltip" data-bs-placement="top" title="${event.des_cat}"><div class="text-truncate text-center" style="max-width: 300px;">${event.des_cat}</div></td>
                     <td><span class="${badgeClass} align-middle">${statusText}</span></td>
                     <td>
-                        <button class="btn btn-sm btn-danger delete-event-btn align-middle" data-event-id="${event.id_cat}" data-event-name="${event.nom_cat}" data-bs-toggle="modal" data-type="categorie" data-action="delete" data-bs-target="#delete-notify" onclick=actionEvent(this)>Supprimer</button>
-                        <button class="btn btn-sm btn-primary update-event-btn align-middle" data-event-id="${event.id_cat}" data-type="categorie" data-action="update" >Modifier</button>
-                        <button class="btn btn-sm btn-secondary manage-participants-btn align-middle" data-event-id="${event.id_cat}" data-type="categorie" data-action="participants" >Participants</button>
+                        <button class="btn btn-sm btn-danger delete-event-btn align-middle" data-event-id="${event.id}" data-event-name="${event.nom_cat}" data-bs-toggle="modal" data-type="categorie" data-action="delete" data-bs-target="#delete-notify" onclick=actionEvent(this)>Supprimer</button>
+                        <button class="btn btn-sm btn-primary update-event-btn align-middle" data-event-id="${event.id}" data-type="categorie" data-action="update" >Modifier</button>
+                        <button class="btn btn-sm btn-secondary manage-participants-btn align-middle" data-event-id="${event.id}" data-type="categorie" data-action="participants" >Participants</button>
                     </td>
                 </tr>
                 `;

@@ -79,10 +79,10 @@ try {
         $nom_cat = $_POST['categoryName']; 
         $des_cat = $_POST['categoryDescription'];
         $active_cat = isset($_POST['categoryActive']) ? 1 : 0;
-        $sql = "INSERT INTO categorie (nom_cat, img_cat, des_cat, isActive) VALUES (:nom_cat, :img_cat, :des_cat, :isActive)";
+        $sql = "INSERT INTO categorie (nom_cat, img, des_cat, isActive) VALUES (:nom_cat, :img, :des_cat, :isActive)";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':nom_cat', $nom_cat);
-        $stmt->bindParam(':img_cat', $db_file_name);
+        $stmt->bindParam(':img', $db_file_name);
         $stmt->bindParam(':des_cat', $des_cat);
         $stmt->bindParam(':isActive', $active_cat);
         if ($stmt->execute()) {
@@ -97,7 +97,7 @@ try {
     else if (isset($_POST['results-link'])) {
         $sql = "SELECT c.nom_cat AS Categorie, r.nom AS 'Nom Candidat', r.nombre_vote AS 'Votes totaux'
                 FROM resultats r 
-                JOIN categorie c ON c.id_cat = r.id_cat
+                JOIN categorie c ON c.id = r.id
                 GROUP BY c.nom_cat
                 ORDER BY r.nombre_vote DESC";
 

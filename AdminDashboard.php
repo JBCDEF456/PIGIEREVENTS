@@ -283,6 +283,26 @@
         </div>
     </div>
 
+    <form action="" method="post">
+        <div class="modal fade" id="updatenotify" tabindex="-1" aria-labelledby="updatenotif" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Modifier</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
+                    </div>
+                    <div class="modal-boddy">
+                        ....
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button">Annuler</button>
+                        <button type="submit">Modifier</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     <script src="Dashboard.js"></script>
   </body>

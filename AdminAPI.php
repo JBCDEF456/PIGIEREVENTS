@@ -76,11 +76,11 @@ session_start();
                 $nom = $_POST['participantName'];
                 $classe = $_POST['participantClass'];
 
-                $sql = "INSERT INTO candidat (nom, classe, img_part) VALUES (:nom, :classe, :img_part)";
+                $sql = "INSERT INTO candidat (nom, classe, img) VALUES (:nom, :classe, :img)";
                 $stmt = $pdo->prepare($sql);
                 $stmt->bindParam(':nom', $nom);
                 $stmt->bindParam(':classe', $classe);
-                $stmt->bindParam(':img_part', $db_file_name);
+                $stmt->bindParam(':img', $db_file_name);
                 $stmt->execute();
 
                 echo json_encode(["status" => "success"]);
@@ -99,16 +99,16 @@ session_start();
         if(isset($_GET['delEvent'], $_GET['type'])){
             $id = $_GET['delEvent'];
             $type = $_GET['type'];
-            $image = "SELECT img_cat FROM $type WHERE id_cat = :id";
+            $image = "SELECT img FROM $type WHERE id = :id";
             $stmt_img = $pdo->prepare($image);
             $stmt_img->bindParam(':id', $id);
             $stmt_img->execute();
             $img_to_delete = $stmt_img->fetch(PDO::FETCH_ASSOC);
-            $file = $img_to_delete['img_cat'] ?? null;
+            $file = $img_to_delete['img'] ?? null;
             if(unlink($file)){
                 echo"GOOD";
             }
-            $sql = "DELETE FROM $type WHERE id_cat = :id";
+            $sql = "DELETE FROM $type WHERE id = :id";
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(':id', $id);
             $stmt->execute();
