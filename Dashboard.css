@@ -44,3 +44,18 @@
 #participants-link{
     @include font-size(4rem);
 }
+/* Cette règle CSS doit être dans votre fichier Dashboard.css */
+.description-limitee {
+    max-width: 300px; 
+    /* ... autres styles ... */
+}
+
+/* La règle de troncation multi-lignes doit cibler le texte */
+.description-limitee { 
+    display: -webkit-box;
+    -webkit-line-clamp: 2; 
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}

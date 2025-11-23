@@ -17,6 +17,7 @@
     <script src="Dashboard.js"></script>
   </head>
   <body>
+    <script src="Dashboard.js"></script>
  
   <div class="container-fluid ">
         
@@ -127,7 +128,7 @@
                     <div id="section-events-list" class="page-section mt-3">
                         <h3 class="text-center">Listes des evenements</h3>
                         <div class="card-shadow-sm">
-                            <div class="card-body">
+                            <div class="card-body table-responsive">
                                 <table class="table table-hover">
                                     <thead class="table-light">
                                         <tr>
@@ -145,7 +146,7 @@
                             </div>
                         </div>
                     </div>
-                        <form id="addCategoryForm" action="api.php" method="post">
+                        <form id="addCategoryForm" action="api.php" method="post" enctype="multipart/form-data">
                             <div class="modal fade" id="addCategoryModal" tabindex="-1" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
@@ -154,10 +155,13 @@
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                <form id="addCategoryForm" action="api.php" method="post">
                                                     <div class="mb-3">
                                                         <label for="categoryName" class="form-label justify-content-start">Nom de la categorie</label>
                                                         <input type="text" class="form-control" id="categoryName" name="categoryName" required>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="categoryDescription" class="col-form-label justify-content-start">Description de la categorie</label>
+                                                        <input type="text" class="form-control" id="categoryDescription" name="categoryDescription" required>
                                                     </div>
                                                     <div class="mb-3">
                                                         <div class="input-group">
@@ -165,7 +169,12 @@
                                                             <label class="input-group-text" for="categoryImage">Image categorie</label>
                                                         </div>
                                                     </div>
-                                                </form>
+                                                    <div class="mb-4">
+                                                        <div class="form-check form-switch">
+                                                            <input type="checkbox" class="form-check-input" role="switch" value ="0" id="categoryActive" name="categoryActive">
+                                                            <label class="form-check-label" for="categoryActive">Rendre Actif les votes pour cette categorie</label>
+                                                        </div>
+                                                    </div>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
@@ -175,6 +184,7 @@
                                     </div>
                                 </div>
                             </form>
+                            
                     <div class="container">
                         <!-- Tableau des votes. Je compte sur toi pour le remplir Celio 
                                                         avec ton magiques PHP et SQL ;)-->
@@ -209,7 +219,7 @@
                         </div>
                     </div>
                     </div>
-                        <form id="addParticipantsForm" action="api.php" method="post">
+                        <form id="addParticipantsForm" action="AdminAPI.php" method="post" enctype="multipart/form-data">
                                 <div class="modal fade" id="addParticipants" tabindex="-1" aria-labelledby="addParticipantsLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
@@ -233,16 +243,14 @@
                                                             <label class="input-group-text" for="participantPhoto">Photo participants</label>
                                                         </div>
                                                     </div>
-                                                </form>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
-                                                <button type="submit" class="btn btn-success" id="saveCategoryBtn">Enregistrer</button>
+                                                <button type="submit" class="btn btn-success" id="saveCategoryBtn" name="submitParticipants">Enregistrer</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                         </form>
                     <div class="container">
                         <!-- Tableau des participants. Je compte sur toi pour le remplir Celio 
@@ -250,11 +258,32 @@
                     </div>
                     
                 </div>
+
+
             </main>
             
         </div>
 </div>
-    <script src="Dashboard.js"></script>
+    
+    <div class="modal fade" id="delete-notify" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Supprimer</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
+                </div>
+                <div class="modal-body">
+                    <p id="text"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Annuler</button>
+                    <button type="button" class="btn btn-danger" id="confirm-delete-btn">Supprimer</button> 
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="Dashboard.js"></script>
   </body>
 </html> 
