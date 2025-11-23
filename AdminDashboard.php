@@ -302,13 +302,13 @@
                             <div class="mb-3">
                                 <div class="input-group">
                                     <input type="file" class="form-control" id="participantPhoto" name="participantPhoto" accept="image/*" required>
-                                    <label class="input-group-text" for="participantPhoto">Photo participants</label>
+                                    <label class="input-group-text" for="participantPhoto">Photo participant</label>
                                 </div>
                             </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
-                        <button type="submit" class="btn btn-success" data-bs-dismiss="modal" id="saveBtn" name="submitParticipants">Modifier</button>
+                        <button type="submit" class="btn btn-success" id="saveCategoryBtn" name="submitParticipants">Enregistrer</button>
                     </div>
                 </div>
             </div>
