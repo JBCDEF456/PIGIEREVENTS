@@ -114,6 +114,66 @@ session_start();
             $stmt->execute();
             header("Location: AdminDashboard.php");
         }
+
+        /*if(isset($_POST['updateCategory'])){
+            
+            $id = $_POST['categoryId'];
+            $nom_cat = $_POST['categoryName'];
+
+            $sql = "UPDATE categorie SET nom_cat = :nom_cat WHERE id = :id";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':nom_cat', $nom_cat);
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
+
+            echo json_encode(["status" => "success"]);
+            header("Location: AdminDashboard.php");
+            exit();
+        }*/
+
+        if(isset($_POST['AlterEvent'])){
+
+                $id = $_POST['AlterEvent'];
+                $sql = "DELETE img FROM candidat WHERE id = :id";
+                $stmt = $pdo->prepare($sql);
+                $stmt->bindParam(':id', $id);
+                $stmt->execute();
+
+                $upload_dir = 'Uploads/Participants/';
+                $db_file_name = null;
+                $file_tmp_name = $_FILES['participantPhoto']['tmp_name'];
+                $file_name = $_FILES['participantPhoto']['name'];
+                $file_extension = pathinfo($file_name, PATHINFO_EXTENSION);
+                $new_file_name = uniqid('img_', true).'.'.$file_extension;
+                $file_destination = $upload_dir . $new_file_name;
+
+                $allowed_extensions = ['jpg', 'jpeg', 'png'];
+                if(!in_array($file_extension, $allowed_extensions)){
+                    die("Type de fichier non autorisé.");
+                }
+                if(move_uploaded_file($file_tmp_name, $file_destination)){
+                    $db_file_name = $file_destination;
+                } else {
+                    die("Échec du téléchargement de l'image.");
+                }
+            
+                $nom = $_POST['participantName'];
+                $classe = $_POST['participantClass'];
+
+                $sql = "UPDATE candidat SET nom = :nom, classe = :classe, img = :img WHERE id = :id";
+                $stmt = $pdo->prepare($sql);
+                $stmt->bindParam(':nom', $nom);
+                $stmt->bindParam(':classe', $classe);
+                $stmt->bindParam(':img', $db_file_name);
+                $stmt->execute();
+
+                echo json_encode(["status" => "success"]);
+                header("Location: AdminDashboard.php");
+                exit();
+            } else {
+                echo json_encode(["error" => "Aucune action spécifiée"]);
+            }
+
     } catch (PDOException $e){
         die("Erreur de connexion : " . $e->getMessage()); 
     }
