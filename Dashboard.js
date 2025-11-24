@@ -137,11 +137,11 @@ function notifyMessage(message, type){
 
     setTimeout(() => {
         const alertEl = container.querySelector('.alert');
-        if (bootstrap && alertEl) { // Vérifie que Bootstrap est chargé
+        if (bootstrap && alertEl) { 
             const bsAlert = bootstrap.Alert.getOrCreateInstance(alertEl);
             bsAlert.close();
         } else {
-            // Repli si Bootstrap n'est pas prêt
+           
             container.innerHTML = ''; 
         }
     }, 5000);
