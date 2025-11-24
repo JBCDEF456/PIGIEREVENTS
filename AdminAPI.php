@@ -36,6 +36,7 @@ session_start();
             }
         } else {
             echo json_encode(["error" => "Aucune action spécifiée"]);
+            header("Location: AdminDashboard.php");
         }
 
         if(isset($_POST["submitCategory"])){
