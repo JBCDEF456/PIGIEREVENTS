@@ -282,28 +282,92 @@
             </div>
         </div>
     </div>
-    <form id="" action="AdminAPI.php" method="post" enctype="multipart/form-data">
-        <div class="modal fade" id="updatenotify" tabindex="-1" aria-labelledby="modify" aria-hidden="true">
+    
+    <div id="alertContainer" class="position-fixed bottom-0 end-0 p-3" style="z-index: 1100;"></div>
+    <form id="Updater" action="AdminAPI.php" method="post" enctype="multipart/form-data">
+        <div class="modal fade" id="CatUpdater" tabindex="-1" aria-labelledby="PartLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title " id="modifyParticipantsLabel">Modification</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div class="modal-header header">
+                        <h2>Modification categorie</h2>
+                        <button type="button" class="btn btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                            
+                        <div class="mb-3">
+                            <input type="text" class="d-none" id="IDcat" name="ID">
+                            <label for="newName" class="form-label justify-content-start">Nouveau nom</label>
+                            <input type="text" class="form-control" id="newName" name="newName" value="" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="newDes" class="form-label justify-content-start">Nouvelle Description</label>
+                            <input type="text" class="form-control" id="newDes" name="newDes" required>
+                        </div>
+                        <hr>
+                        <div class="mb-3">
+                            <div class="mb-3 justify-content-center align-content-center text-center">
+                                <label for="lastImg">Ancienne image</label>
+                                <img src="" id="lastImg" alt="Ancienne Image" class="img-thumbnail" style="width: 120px;height: 120px;object-fit: contain;border-radius: 10%; border-color: gray;" />
+                            </div>
+                            <div class="input-group">
+                                <input type="file" class="form-control" id="Image" name="categoryImage" accept="image/*">
+                                <label class="input-group-text" for="Image">Nouvelle Image</label>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="form-check form-switch">
+                                <input type="checkbox" class="form-check-input" role="switch" id="updateState" name="categoryActive" value="0">
+                                <label class="form-check-label" for="categoryActive">Rendre Actif les votes pour cette categorie</label>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
-                        <button type="submit" class="btn btn-success" id="update" name="update">Enregistrer</button>
+                        <button type="submit" class="btn btn-success" id="CatUpdate" name="CatUpdate">Enregistrer</button>
                     </div>
                 </div>
             </div>
         </div>
     </form>
-    <div id="alertContainer" class="position-fixed bottom-0 end-10 translate-middle-x p-3" style="z-index: 1100;">
+    <form id="Updater" action="AdminAPI.php" method="post" enctype="multipart/form-data">
+        <div class="modal fade" id="PartUpdater" tabindex="-1" aria-labelledby="PartLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header header">
+                        <h2>Modification candidat</h2>
+                        <button type="button" class="btn btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                            
+                        <div class="mb-3">
+                            <label for="newName" class="form-label justify-content-start">Nouveau nom</label>
+                            <input type="text" class="form-control" id="newName2" name="newName" required>
+                            <input type="text" class="d-none" id="IDpart" name="ID">
+                        </div>
+                        <div class="mb-3">
+                            <label for="newCla" class="form-label justify-content-start">Nouvelle classe</label>
+                            <input type="text" class="form-control" id="newCla" name="newCla" required>
+                        </div>
+                        <hr>
+                        <div class="mb-3">
+                            <div class="mb-3 justify-content-center text-center">
+                                <label for="lastImg">Ancienne image</label>
+                                <img src="" id="lastImg2" alt="Ancienne Image" class="img-thumbnail" style="width: 120px;height: 120px;object-fit: contain;border-radius: 10%; border-color: gray;" />
+                            </div>
+                            <div class="input-group">
+                                <input type="file" class="form-control" id="Image" name="participantImage" accept="image/*">
+                                <label class="input-group-text" for="Image">Nouvelle Image</label>
+                            </div>
+                        </div>
 
-    </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
+                        <button type="submit" class="btn btn-success" id="PartUpdate" name="PartUpdate" >Enregistrer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     <script src="Dashboard.js"></script>
   </body>

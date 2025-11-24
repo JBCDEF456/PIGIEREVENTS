@@ -112,8 +112,8 @@ function getParticipants(){
                     <td class="align-middle ">${user.nom}</td>
                     <td class="align-middle">${user.classe}</td>
                     <td>
-                        <button class="btn btn-sm btn-danger delete-user-btn" data-event-id="${user.id}" data-event-name="${user.nom}" data-bs-toggle="modal" data-type="candidat" data-action="delete" data-bs-target="#delete-notify" onclick=actionEvent(this)>Supprimer</button>
-                        <button class="btn btn-sm btn-primary update-user-btn" data-event-id="${user.id}" data-bs-target="#updatenotify" data-bs-toggle="modal" data-type="candidat" data-action="update">Modifier</button>
+                        <button class="btn btn-sm btn-danger delete-user-btn" data-event-id="${user.id}" data-event-name="${user.nom}" data-event-img="${user.img}" data-bs-toggle="modal" data-type="candidat" data-action="delete" data-bs-target="#delete-notify" onclick=actionEvent(this)>Supprimer</button>
+                        <button class="btn btn-sm btn-primary update-user-btn" data-event-id="${user.id}" data-event-name="${user.nom}" data-event-classe="${user.classe}" data-event-img="${user.img}" data-bs-target="#PartUpdater" data-bs-toggle="modal" data-type="candidat" data-action="update" onclick=actionEvent(this)>Modifier</button>
                     </td>
                 </tr>
                 `;
@@ -159,23 +159,70 @@ function deleteEvents(item,type){
             .then(response => {
                 if(response.ok){
                     console.log("Action reussite, pas de contenu JSON");
-                    notifyMessage("Success", 'primary');
+                    notifyMessage("Element supprime avec success", 'success');
                     if(type === 'candidat'){
                         getParticipants();
                     }else{
                         getEvents();
                     }
                 }else{
+                    notifyMessage("Erreur lors de la suppression", 'danger');
                     console.log("Erreur dans le processus");
                 }
             })
-            .catch(error => console.error('Erreur fetch: ', error));
+            .catch(error => {
+                notifyMessage("Erreur lors de la suppression", 'danger');
+                console.error('Erreur fetch: ', error);
+            });
     });
 }
 
-function ModifyEvent(item,type){
-    
+function ModifyEvent(item,itemType){
+    if(itemType === 'categorie'){
+       //Manip d'affichages des valeurs par defauts
+       //Recuperation des input
+       let name = document.getElementById('newName');
+       let desc = document.getElementById('newDes');
+       let img = document.getElementById('lastImg');
+       let state = document.getElementById('updateState');
+       //Transfert de donnee au form
+       const updater = document.getElementById('CatUpdate');
+       updater.setAttribute('data-event-id', item.getAttribute('data-event-id'));
+       //Don des valeurs par defaut
+       name.setAttribute('value', item.getAttribute('data-event-name'));
+       desc.setAttribute('value', item.getAttribute('data-event-des'));
+       img.setAttribute('src', item.getAttribute('data-event-img'));
+       if(item.getAttribute('data-event-state')==='1'){
+        state.setAttribute('checked', 'checked');
+        state.setAttribute('value', '1');
+        state.checked = true;
+       }else{
+        state.removeAttribute('checked');
+        state.setAttribute('value', '0');
+        state.checked = false;
+       }
+        let ID = document.getElementById('IDcat');
+        ID.setAttribute('value', item.getAttribute('data-event-id'));
+
+    }else if(itemType === 'candidat'){
+        //Recuperation des input
+        let name = document.getElementById('newName2');
+        console.log(item.getAttribute('data-event-img'));
+        let classe = document.getElementById('newCla');
+        let img = document.getElementById('lastImg2');
+        //Transfert de donnee au form
+        const updater = document.getElementById('PartUpdate');
+        updater.setAttribute('data-event-id', item.getAttribute('data-event-id'));
+        //Don des valeurs par defaut
+        name.setAttribute('value', item.getAttribute('data-event-name'));
+        classe.setAttribute('value', item.getAttribute('data-event-classe'));
+        img.setAttribute('src', item.getAttribute('data-event-img'));
+
+        let ID = document.getElementById('IDpart');
+        ID.setAttribute('value', item.getAttribute('data-event-id'));
+    }
 }
+
 
 //Gestion dynamique des actions execute
 function actionEvent(item){
@@ -184,7 +231,7 @@ function actionEvent(item){
     if(itemAction === "delete"){
         deleteEvents(item,itemType);
     }else if(itemAction === "update"){
-        //ModifyEvent(item,itemType);
+        ModifyEvent(item,itemType);
     }else{
 
     }
@@ -208,12 +255,12 @@ function getEvents(){
                 conteneur.innerHTML += `
                 <tr>
                     <td><img src="${event.img}" alt="Image du ${event.nom_cat}" class="img-thumbnail table-thumbnail" style="width: 60px;height: 60px;object-fit: contain;border-radius: 10%; border-color: gray;" /></td>
-                    <td class="align-middle">${event.nom_cat}</td>
+                    <td class="align-middle" data-bs-toggle="tooltip" data-bs-placement="top" title="${event.des_cat}"><div class="text-truncate text-center" style="max-width: 300px;">${event.nom_cat}</div></td>
                     <td class="align-middle text-center" data-bs-toggle="tooltip" data-bs-placement="top" title="${event.des_cat}"><div class="text-truncate text-center" style="max-width: 300px;">${event.des_cat}</div></td>
-                    <td><span class="${badgeClass} align-middle">${statusText}</span></td>
+                    <td><span class="${badgeClass} align-middle mt-4">${statusText}</span></td>
                     <td>
                         <button class="btn btn-sm btn-danger delete-event-btn align-middle" data-event-id="${event.id}" data-event-name="${event.nom_cat}" data-bs-toggle="modal" data-type="categorie" data-action="delete" data-bs-target="#delete-notify" onclick=actionEvent(this)>Supprimer</button>
-                        <button class="btn btn-sm btn-primary update-event-btn align-middle" data-event-id="${event.id}" data-type="categorie" data-bs-toggle="modal" data-bs-target="#updatenotify" data-action="update" >Modifier</button>
+                        <button class="btn btn-sm btn-primary update-event-btn align-middle" data-event-state="${event.isActive}" data-event-id="${event.id}" data-event-name="${event.nom_cat}" data-event-img="${event.img}" data-event-des="${event.des_cat}" data-type="categorie" data-bs-toggle="modal" data-bs-target="#CatUpdater" data-action="update" onclick=actionEvent(this)>Modifier</button>
                         <button class="btn btn-sm btn-secondary manage-participants-btn align-middle" data-event-id="${event.id}" data-type="categorie" data-action="participants" >Participants</button>
                     </td>
                 </tr>
