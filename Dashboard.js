@@ -113,7 +113,7 @@ function getParticipants(){
                     <td class="align-middle">${user.classe}</td>
                     <td>
                         <button class="btn btn-sm btn-danger delete-user-btn" data-event-id="${user.id}" data-event-name="${user.nom}" data-bs-toggle="modal" data-type="candidat" data-action="delete" data-bs-target="#delete-notify" onclick=actionEvent(this)>Supprimer</button>
-                        <button class="btn btn-sm btn-primary update-user-btn" data-event-id="${user.id}" data-bs-target="#updatenotify" data-bs-toggle="modal" data-type="candidat" data-action="delete" >Modifier</button>
+                        <button class="btn btn-sm btn-primary update-user-btn" data-event-id="${user.id}" data-bs-target="#updatenotify" data-bs-toggle="modal" data-type="candidat" data-action="update">Modifier</button>
                     </td>
                 </tr>
                 `;
@@ -174,30 +174,7 @@ function deleteEvents(item,type){
 }
 
 function ModifyEvent(item,type){
-    const conteneur = document.getElementById("text");
-    const userID = item.getAttribute('data-event-id');
-    conteneur.innerHTML = `Voulez vous vraiment supprimer: ${item.getAttribute('data-event-id')}`;
-    const url = `AdminAPI.php?AlterEvent=${userID}&type=${type}`;
-    const modifier = document.getElementById("saveCategoryBtn");
-    modifier.setAttribute("data-bs-dismiss", "modal");
-    modifier.addEventListener("click", function(){
-        fetch(url)
-            .then(response => {
-                if(response.ok){
-                    console.log("Action reussite, pas de contenu JSON");
-                    /*if(type === 'candidat'){
-                        getParticipants();
-                        //getEvents();
-                    /*}else{
-                        
-                    }*/
-                }else{
-                    console.log("Erreur dans le processus");
-                }
-            }
-            )
-            .catch(error => console.error('Erreur fetch: ', error));
-    });
+    
 }
 
 //Gestion dynamique des actions execute
@@ -207,7 +184,7 @@ function actionEvent(item){
     if(itemAction === "delete"){
         deleteEvents(item,itemType);
     }else if(itemAction === "update"){
-        ModifyEvent(item,itemType);
+        //ModifyEvent(item,itemType);
     }else{
 
     }
@@ -236,7 +213,7 @@ function getEvents(){
                     <td><span class="${badgeClass} align-middle">${statusText}</span></td>
                     <td>
                         <button class="btn btn-sm btn-danger delete-event-btn align-middle" data-event-id="${event.id}" data-event-name="${event.nom_cat}" data-bs-toggle="modal" data-type="categorie" data-action="delete" data-bs-target="#delete-notify" onclick=actionEvent(this)>Supprimer</button>
-                        <button class="btn btn-sm btn-primary update-event-btn align-middle" data-event-id="${event.id}" data-type="categorie" data-action="update" >Modifier</button>
+                        <button class="btn btn-sm btn-primary update-event-btn align-middle" data-event-id="${event.id}" data-type="categorie" data-bs-toggle="modal" data-bs-target="#updatenotify" data-action="update" >Modifier</button>
                         <button class="btn btn-sm btn-secondary manage-participants-btn align-middle" data-event-id="${event.id}" data-type="categorie" data-action="participants" >Participants</button>
                     </td>
                 </tr>

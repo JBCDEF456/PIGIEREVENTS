@@ -282,33 +282,20 @@
             </div>
         </div>
     </div>
-    <form id="modifyPart" action="AdminAPI.php" method="post" enctype="multipart/form-data">
+    <form id="" action="AdminAPI.php" method="post" enctype="multipart/form-data">
         <div class="modal fade" id="updatenotify" tabindex="-1" aria-labelledby="modify" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title " id="modifyParticipantsLabel">Modifier le participant</h5>
+                        <h5 class="modal-title " id="modifyParticipantsLabel">Modification</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                            <div class="mb-3">
-                                <label for="participantName" class="form-label justify-content-start">Nom du participant</label>
-                                <input type="text" class="form-control" id="participantName" name="participantName" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="participantClass" class="form-label justify-content-start">Classe du participant</label>
-                                <input type="text" class="form-control" id="participantClass" name="participantClass" required>
-                            </div>
-                            <div class="mb-3">
-                                <div class="input-group">
-                                    <input type="file" class="form-control" id="participantPhoto" name="participantPhoto" accept="image/*" required>
-                                    <label class="input-group-text" for="participantPhoto">Photo participant</label>
-                                </div>
-                            </div>
+                            
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
-                        <button type="submit" class="btn btn-success" id="saveCategoryBtn" name="submitParticipants">Enregistrer</button>
+                        <button type="submit" class="btn btn-success" id="update" name="update">Enregistrer</button>
                     </div>
                 </div>
             </div>
