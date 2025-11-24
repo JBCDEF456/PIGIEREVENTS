@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>Pigier Events System</title>
     <link rel="stylesheet" href="Dashboard.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <style>
@@ -301,7 +301,7 @@
             </div>
         </div>
     </form>
-    <div id="alertContainer" class="position-fixed bottom-0 end-50 translate-middle-x p-3" style="z-index: 1100;">
+    <div id="alertContainer" class="position-fixed bottom-0 end-10 translate-middle-x p-3" style="z-index: 1100;">
 
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
