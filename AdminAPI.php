@@ -194,7 +194,6 @@ session_start();
                 try {
                     $stmt->execute($bindParams);
                     
-                    // --- 5. Nettoyage de l'ancienne image (si une nouvelle a été uploadée) ---
                     if ($image_change && $oldImagePath && file_exists($oldImagePath)) {
                         unlink($oldImagePath);
                     }
@@ -261,7 +260,6 @@ session_start();
                 try {
                     $stmt->execute($bindParams);
                     
-                    // --- 5. Nettoyage de l'ancienne image (si une nouvelle a été uploadée) ---
                     if ($image_change && $oldImagePath && file_exists($oldImagePath)) {
                         unlink($oldImagePath);
                     }
