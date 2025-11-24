@@ -124,13 +124,33 @@ function getParticipants(){
 }
 
 function notifyMessage(message, type){
+    const container = document.getElementById('alertContainer');
 
+    const alertHTML = `
+        <div class="alert alert-${type} alert-dismissible fade show" role="alert">
+            ${message}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    `;
+
+    container.innerHTML = alertHTML;
+
+    setTimeout(() => {
+        const alertEl = container.querySelector('.alert');
+        if (bootstrap && alertEl) { // Vérifie que Bootstrap est chargé
+            const bsAlert = bootstrap.Alert.getOrCreateInstance(alertEl);
+            bsAlert.close();
+        } else {
+            // Repli si Bootstrap n'est pas prêt
+            container.innerHTML = ''; 
+        }
+    }, 5000);
 }
 
 function deleteEvents(item,type){
     const conteneur = document.getElementById("text");
     const userID = item.getAttribute('data-event-id');
-    conteneur.innerHTML = `Voulez vous vraiment supprimer: ${item.getAttribute('data-event-classe')}`;
+    conteneur.innerHTML = `Voulez vous vraiment supprimer: ${item.getAttribute('data-event-name')}`;
     const url = `AdminAPI.php?delEvent=${userID}&type=${type}`;
     const supprimer = document.getElementById("confirm-delete-btn");
     supprimer.setAttribute("data-bs-dismiss", "modal");
@@ -139,6 +159,7 @@ function deleteEvents(item,type){
             .then(response => {
                 if(response.ok){
                     console.log("Action reussite, pas de contenu JSON");
+                    notifyMessage("Success", 'primary');
                     if(type === 'categorie'){
                         getEvents();
                     }else{
