@@ -160,10 +160,10 @@ function deleteEvents(item,type){
                 if(response.ok){
                     console.log("Action reussite, pas de contenu JSON");
                     notifyMessage("Success", 'primary');
-                    if(type === 'categorie'){
-                        getEvents();
-                    }else{
+                    if(type === 'candidat'){
                         getParticipants();
+                    }else{
+                        getEvents();
                     }
                 }else{
                     console.log("Erreur dans le processus");
@@ -185,15 +185,17 @@ function ModifyEvent(item,type){
             .then(response => {
                 if(response.ok){
                     console.log("Action reussite, pas de contenu JSON");
-                    if(type === 'categorie'){
-                        getEvents();
-                    }else{
+                    /*if(type === 'candidat'){
                         getParticipants();
-                    }
+                        //getEvents();
+                    /*}else{
+                        
+                    }*/
                 }else{
                     console.log("Erreur dans le processus");
                 }
-            })
+            }
+            )
             .catch(error => console.error('Erreur fetch: ', error));
     });
 }
