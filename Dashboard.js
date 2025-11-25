@@ -177,6 +177,8 @@ function deleteEvents(item,type){
     });
 }
 
+
+
 function ModifyEvent(item,itemType){
     if(itemType === 'categorie'){
        //Manip d'affichages des valeurs par defauts
@@ -232,8 +234,8 @@ function actionEvent(item){
         deleteEvents(item,itemType);
     }else if(itemAction === "update"){
         ModifyEvent(item,itemType);
-    }else{
-
+    }else  if (itemAction === "participants"){
+        addParticipants(eventID=item.getAttribute("data-event-id"));
     }
 }
 
@@ -251,6 +253,7 @@ function getCandidature(item){
         })
 
 }
+
 
 
 function getEvents(){

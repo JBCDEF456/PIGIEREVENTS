@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : dim. 23 nov. 2025 à 22:59
+-- Généré le : mar. 25 nov. 2025 à 10:33
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -28,19 +28,18 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `candidat` (
-  `id_cand` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `nom` varchar(50) NOT NULL,
   `classe` varchar(15) NOT NULL,
-  `img_part` varchar(100) NOT NULL
+  `img` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Déchargement des données de la table `candidat`
 --
 
-INSERT INTO `candidat` (`id_cand`, `nom`, `classe`, `img_part`) VALUES
-(1, 'Celio', 'ISI1', 'Uploads/Participants/img_6922a3dae3bfa1.85422089.jpeg'),
-(2, 'Remy', 'SJI1', 'Uploads/Participants/img_692314fcdbbc61.26569500.jpg');
+INSERT INTO `candidat` (`id`, `nom`, `classe`, `img`) VALUES
+(2, 'Remy', 'SJI', 'Uploads/Participants/img_692314fcdbbc61.26569500.jpg');
 
 -- --------------------------------------------------------
 
@@ -60,8 +59,8 @@ CREATE TABLE `candidature` (
 --
 
 CREATE TABLE `categorie` (
-  `id_cat` int(11) NOT NULL,
-  `img_cat` varchar(255) NOT NULL,
+  `id` int(11) NOT NULL,
+  `img` varchar(255) NOT NULL,
   `nom_cat` varchar(20) NOT NULL,
   `des_cat` varchar(255) NOT NULL,
   `isActive` tinyint(1) NOT NULL
@@ -71,7 +70,7 @@ CREATE TABLE `categorie` (
 -- Déchargement des données de la table `categorie`
 --
 
-INSERT INTO `categorie` (`id_cat`, `img_cat`, `nom_cat`, `des_cat`, `isActive`) VALUES
+INSERT INTO `categorie` (`id`, `img`, `nom_cat`, `des_cat`, `isActive`) VALUES
 (25, 'Uploads/Events/img_6922a16b217f06.86512221.jpeg', 'yolo', 'Yoshi', 1);
 
 -- --------------------------------------------------------
@@ -110,7 +109,7 @@ CREATE TABLE `vote` (
 -- Index pour la table `candidat`
 --
 ALTER TABLE `candidat`
-  ADD PRIMARY KEY (`id_cand`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Index pour la table `candidature`
@@ -123,7 +122,7 @@ ALTER TABLE `candidature`
 -- Index pour la table `categorie`
 --
 ALTER TABLE `categorie`
-  ADD PRIMARY KEY (`id_cat`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Index pour la table `resultats`
@@ -148,13 +147,13 @@ ALTER TABLE `vote`
 -- AUTO_INCREMENT pour la table `candidat`
 --
 ALTER TABLE `candidat`
-  MODIFY `id_cand` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pour la table `categorie`
 --
 ALTER TABLE `categorie`
-  MODIFY `id_cat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- Contraintes pour les tables déchargées
@@ -164,22 +163,22 @@ ALTER TABLE `categorie`
 -- Contraintes pour la table `candidature`
 --
 ALTER TABLE `candidature`
-  ADD CONSTRAINT `candidature_ibfk_2` FOREIGN KEY (`id_cat`) REFERENCES `categorie` (`id_cat`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `candidature_ibfk_3` FOREIGN KEY (`id_cand`) REFERENCES `candidat` (`id_cand`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `candidature_ibfk_2` FOREIGN KEY (`id_cat`) REFERENCES `categorie` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `candidature_ibfk_3` FOREIGN KEY (`id_cand`) REFERENCES `candidat` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `resultats`
 --
 ALTER TABLE `resultats`
-  ADD CONSTRAINT `resultats_ibfk_1` FOREIGN KEY (`id_cand`) REFERENCES `candidat` (`id_cand`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `resultats_ibfk_2` FOREIGN KEY (`id_cat`) REFERENCES `categorie` (`id_cat`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `resultats_ibfk_1` FOREIGN KEY (`id_cand`) REFERENCES `candidat` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `resultats_ibfk_2` FOREIGN KEY (`id_cat`) REFERENCES `categorie` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `vote`
 --
 ALTER TABLE `vote`
-  ADD CONSTRAINT `vote_ibfk_1` FOREIGN KEY (`id_cand`) REFERENCES `candidat` (`id_cand`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `vote_ibfk_2` FOREIGN KEY (`id_cat`) REFERENCES `categorie` (`id_cat`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `vote_ibfk_1` FOREIGN KEY (`id_cand`) REFERENCES `candidat` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `vote_ibfk_2` FOREIGN KEY (`id_cat`) REFERENCES `categorie` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
