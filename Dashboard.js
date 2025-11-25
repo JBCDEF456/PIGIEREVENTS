@@ -237,6 +237,21 @@ function actionEvent(item){
     }
 }
 
+function getCandidature(item){
+    console.log("J'affiche les candidatures");
+    const conteneur = document.getElementById('list-candidats')
+    const catID = item.getAttribute('data-event-id');
+    conteneur.innerHTML="";
+    fetch(`AdminAPI.php?candEvent=${catID}`)
+        .then(response => response.json())
+        .then(data => {
+            if(data.length === 0){
+            conteneur.innerHTML = `<tr><td colspan='5' class='text-center'>Aucun participant trouvé.</td></tr>`;
+        }
+        })
+
+}
+
 
 function getEvents(){
     console.log("Récupération des événements...");
@@ -255,13 +270,13 @@ function getEvents(){
                 conteneur.innerHTML += `
                 <tr>
                     <td><img src="${event.img}" alt="Image du ${event.nom_cat}" class="img-thumbnail table-thumbnail" style="width: 60px;height: 60px;object-fit: contain;border-radius: 10%; border-color: gray;" /></td>
-                    <td class="align-middle" data-bs-toggle="tooltip" data-bs-placement="top" title="${event.des_cat}"><div class="text-truncate text-center" style="max-width: 300px;">${event.nom_cat}</div></td>
+                    <td class="align-middle" data-bs-toggle="tooltip" data-bs-placement="top" title="${event.nom_cat}"><div class="text-truncate text-center" style="max-width: 300px;">${event.nom_cat}</div></td>
                     <td class="align-middle text-center" data-bs-toggle="tooltip" data-bs-placement="top" title="${event.des_cat}"><div class="text-truncate text-center" style="max-width: 300px;">${event.des_cat}</div></td>
                     <td><span class="${badgeClass} align-middle mt-4">${statusText}</span></td>
                     <td>
                         <button class="btn btn-sm btn-danger delete-event-btn align-middle" data-event-id="${event.id}" data-event-name="${event.nom_cat}" data-bs-toggle="modal" data-type="categorie" data-action="delete" data-bs-target="#delete-notify" onclick=actionEvent(this)>Supprimer</button>
                         <button class="btn btn-sm btn-primary update-event-btn align-middle" data-event-state="${event.isActive}" data-event-id="${event.id}" data-event-name="${event.nom_cat}" data-event-img="${event.img}" data-event-des="${event.des_cat}" data-type="categorie" data-bs-toggle="modal" data-bs-target="#CatUpdater" data-action="update" onclick=actionEvent(this)>Modifier</button>
-                        <button class="btn btn-sm btn-secondary manage-participants-btn align-middle" data-event-id="${event.id}" data-type="categorie" data-action="participants" >Participants</button>
+                        <button class="btn btn-sm btn-success manage-participants-btn align-middle" data-event-id="${event.id}" data-type="categorie" data-action="participants" data-bs-toggle="modal" data-bs-target="#candidature" onclick=getCandidature(this) >Participants</button>
                     </td>
                 </tr>
                 `;

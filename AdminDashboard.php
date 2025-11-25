@@ -368,6 +368,31 @@
             </div>
         </div>
     </form>
+
+    <div class="modal fade" id="candidature" tabindex="-1" aria-labelledby="candidature" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="text-center">Les participants de cette categorie</h2>
+                    <button type="button" class="btn btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="top-part justify-content-center text-center">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#candidature">Ajouter un candidat</button>
+                    </div>
+                    <div class="list-candidat">
+                        <ul class="list-group" id="list-candidats">
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-footer text-center justify-content-center">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     <script src="Dashboard.js"></script>
   </body>

@@ -107,6 +107,23 @@ session_start();
 
         }
 
+        if(isset( $_GET['candEvent'])){
+                $candidature = $_GET['candEvent'];
+                error_log("Value ". $candidature);
+                flush();
+                /*
+                $sql = "SELECT nom, classe, img FROM candidat WHERE id IN (SELECT id_cand FROM candidature WHERE id_cat = :id)";
+                $stmt = $pdo->prepare($sql);
+                $stmt->bindParam(':id', $candidature);
+                $stmt->execute();
+                $candidatures = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                error_log("Value ". json_encode(['success' => true, 'candidats' => $candidatures]));
+                flush();
+                $stmt = $pdo->query("SELECT * FROM candidat");
+                return json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));*/
+                exit();
+            }
+
         if(isset($_GET['delEvent'], $_GET['type'])){
             $id = $_GET['delEvent'];
             $type = $_GET['type'];
@@ -271,6 +288,7 @@ session_start();
                     echo (json_encode(['success' => false, 'message' => "Erreur BDD lors de la mise à jour: " . $e->getMessage()]));
                 }
             }
+
     } catch (PDOException $e){
         die("Erreur de connexion : " . $e->getMessage()); 
     }
