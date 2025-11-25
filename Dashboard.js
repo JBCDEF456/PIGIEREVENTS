@@ -241,8 +241,6 @@ function actionEvent(item){
 
 
 
-
-
 function getEvents(){
     console.log("Récupération des événements...");
     const conteneur = document.getElementById("liste-events-body");
